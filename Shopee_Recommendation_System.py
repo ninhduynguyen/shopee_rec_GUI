@@ -370,22 +370,22 @@ def content_based_filtering(filter_option, isVoice=False):
               st.write("Không có item nào theo như bạn đang nhập.")
         item_id = int(item_id_name.split(' - ')[0])
         st.write("phân tích trên item-id: ",item_id)
-            # Add slider and set default number of recommendations to 5
-            # Number input threshold selecting
-            col1, col2 = st.columns(2)
-            # Use col1 and col2 to display the slider
-            rec_nums = col1.slider('Số lượng nhận xét',
+        # Add slider and set default number of recommendations to 5
+        # Number input threshold selecting
+        col1, col2 = st.columns(2)
+        # Use col1 and col2 to display the slider
+        rec_nums = col1.slider('Số lượng nhận xét',
                                       min_value=1,
                                       max_value=5,
                                       value=5,
                                       step=1)
-            threshold = col2.number_input('Đánh giá',
+        threshold = col2.number_input('Đánh giá',
                                           min_value=0.0,
                                           max_value=5.0,
                                           value=DEF_RATING_THRESHOLD,
                                           step=0.05,
                                           help='Rating threshold (0.0 ~ 5.0) to filter products')
-            handle_cf_user_search_button_click(item_id, rec_nums, threshold)
+        handle_cf_user_search_button_click(item_id, rec_nums, threshold)
 
 
 
