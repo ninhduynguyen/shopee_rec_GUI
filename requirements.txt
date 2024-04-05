@@ -6,8 +6,8 @@ matplotlib
 seaborn
 scikit-learn
 regex
-gensim
 underthesea
 SpeechRecognition
 pyaudio
 scipy
+gensim
