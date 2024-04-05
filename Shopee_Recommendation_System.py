@@ -352,10 +352,44 @@ def content_based_filtering(filter_option, isVoice=False):
   elif filter_option == FilterProdLst:
     # Stick widgets
     with st.form(key='my_form'):
-      product_info = st.selectbox("Chọn sản phẩm", pr_.get_product_id_name_list())
+      #product_info = st.selectbox("Chọn sản phẩm", pr_.get_product_id_name_list())
       # Extract product_id from product_info
-      product_id = product_info.split(' - ')[0]
-      content_gui(product_id)
+      #product_id = product_info.split(' - ')[0]
+      #content_gui(product_id)
+      item_id_name = st.text_input("Chọn thông tin sản phẩm:",key="item_id_name")
+      submit_botton = st.form_submit_button("Tìm kiếm")
+      if submit_botton:
+        if item_id_name:
+          suggestions = search_items(item_id_name, item_list_itembase)
+          if suggestions:
+            selected_item = st.selectbox("Chọn một đối tượng:", suggestions)
+            if selected_item:
+              item_id_name = selected_item
+              st.write("Giá trị cuối cùng được chọn:", item_id_name)
+            else:
+              st.write("Không có item nào theo như bạn đang nhập.")
+        item_id = int(item_id_name.split(' - ')[0])
+        st.write("phân tích trên item-id: ",item_id)
+            # Add slider and set default number of recommendations to 5
+            # Number input threshold selecting
+            col1, col2 = st.columns(2)
+            # Use col1 and col2 to display the slider
+            rec_nums = col1.slider('Số lượng nhận xét',
+                                      min_value=1,
+                                      max_value=5,
+                                      value=5,
+                                      step=1)
+            threshold = col2.number_input('Đánh giá',
+                                          min_value=0.0,
+                                          max_value=5.0,
+                                          value=DEF_RATING_THRESHOLD,
+                                          step=0.05,
+                                          help='Rating threshold (0.0 ~ 5.0) to filter products')
+            handle_cf_user_search_button_click(item_id, rec_nums, threshold)
+
+
+
+  
   return
 
 def collaborative_based_filtering(filter_option):
