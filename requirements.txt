@@ -1,6 +1,7 @@
 streamlit
 numpy
 pandas
+smart-open
 matplotlib
 seaborn
 scikit-learn
