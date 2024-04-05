@@ -9,3 +9,4 @@ gensim
 underthesea
 SpeechRecognition
 pyaudio
+scipy
