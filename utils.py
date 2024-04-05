@@ -7,6 +7,7 @@ import speech_recognition as sr
 import os
 import pandas as pd
 import numpy as np
+import smart_open
 import gensim
 # Gemsim & Cosine Similarity
 from gensim import corpora, models, similarities
